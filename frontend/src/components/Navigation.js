@@ -8,8 +8,9 @@ const cookies = new Cookies();
 export const Navigation = () => {
 
     const history = useHistory();
-    const ROLE = cookies.get('role');
     const SESSION_ID = cookies.get('id');
+
+    const [role, setrole] = useState(null)
 
     const logout = () => {
         cookies.remove('id');
@@ -25,12 +26,11 @@ export const Navigation = () => {
     }
 
     useEffect(() => {
+        setrole(cookies.get('role'));
         getData()
     }, [])
 
     return (
-
-
 
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="container">
@@ -47,7 +47,7 @@ export const Navigation = () => {
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Books</Link>
                             </li>
-                            {ROLE == 1 &&
+                            {role == 1 &&
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/users">Users</Link>
                                 </li>
