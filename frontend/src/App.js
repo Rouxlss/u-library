@@ -7,7 +7,6 @@ import { Login } from './components/Login';
 import { DashboardRoutes } from './components/DashboardRoutes';
 
 function App() {
-
   return (
     <div className="">
       <Router>
