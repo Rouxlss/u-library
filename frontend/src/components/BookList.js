@@ -34,10 +34,10 @@ export const BookList = () => {
     }, [])
 
     useEffect(() => {
-        if(search!=''){
+        if (search != '') {
             searchData(search);
-        }else {
-        getData();
+        } else {
+            getData();
 
         }
     }, [search])
@@ -56,7 +56,8 @@ export const BookList = () => {
             id_book: book._id,
             book: book.title,
             author: book.author,
-            student: user.first_name + " " + user.last_name
+            student: user.first_name + " " + user.last_name,
+            status: 1
         });
 
         await axios.put(`http://localhost:4000/api/books/${book._id}`, {
@@ -74,7 +75,9 @@ export const BookList = () => {
         <>
             {role == 1 &&
                 <div>
+
                     <div className="container-sm p-5">
+                        <h4>Books</h4>
                         <Link to="/create-book" className="btn btn-info mb-5">Create Book</Link>
                         <table className="table">
                             <thead>
@@ -103,8 +106,8 @@ export const BookList = () => {
                                                     <button
                                                         onClick={() => deleteBook(book._id)}
                                                         className="btn btn-danger mr-2" style={{ marginRight: 5 }}>
-                                                            <i className="fas fa-trash"></i>
-                                                        </button>
+                                                        <i className="fas fa-trash"></i>
+                                                    </button>
                                                     <Link className="btn btn-success"
                                                         to={"/edit-book/" + book._id}
                                                     >
@@ -130,17 +133,20 @@ export const BookList = () => {
                             <span className="input-group-text" id="addon-wrapping">
                                 <i className="fas fa-search"></i>
                             </span>
-                            <input type="text" className="form-control" onChange={(e)=>setsearch(e.target.value)} placeholder="Search books" aria-label="Username" aria-describedby="addon-wrapping" />
+                            <input type="text" className="form-control" onChange={(e) => setsearch(e.target.value)}
+                                placeholder="Search books by title, author and genre" aria-label="Username" aria-describedby="addon-wrapping" />
                         </div>
                     </div>
                     <div className="mb-5 justify-content-center p-5 row">
                         {
                             book.map((book, index) => (
+                                book.stock != 0 &&
                                 <div className="card" style={{ width: 18 + "rem", margin: 10 }}>
                                     <div className="card-body">
                                         <h5 className="card-title">{book.title} </h5>
                                         <small className="card-text">{book.stock} in stock</small>
                                         <p className="card-text">Author: {book.author}</p>
+                                        <p className="card-text">Genre: {book.genre}</p>
                                         <a onClick={() => reserveBook(book)} className="btn btn-primary">Reserve</a>
                                     </div>
                                 </div>

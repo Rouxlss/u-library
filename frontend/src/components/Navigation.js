@@ -47,7 +47,7 @@ export const Navigation = () => {
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Books</Link>
                             </li>
-                            {ROLE == "1" &&
+                            {ROLE == 1 &&
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/users">Users</Link>
                                 </li>

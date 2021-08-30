@@ -8,8 +8,8 @@ reservationsCtrl.getReservations = async (req, res) => {
 };
 
 reservationsCtrl.createReservation= async (req, res) => {
-    const {id_user, id_book, book, author, student}= req.body;
-    const newReservation = new Reservation({id_user, id_book, book, author, student})
+    const {id_user, id_book, book, author, student, status}= req.body;
+    const newReservation = new Reservation({id_user, id_book, book, author, student, status})
     await newReservation.save();
     res.json({message: 'Reservation Saved'})
 };
@@ -34,8 +34,8 @@ reservationsCtrl.deleteReservation  = async (req, res) => {
 
 reservationsCtrl.updateReservation = async (req, res) => {
     const id = req.params.id;
-    const {id_user, id_book, book, author, student} = req.body;
-    await Reservation.findByIdAndUpdate(id, {id_user, id_book, book, author, student})
+    const {id_user, id_book, book, author, student, status} = req.body;
+    await Reservation.findByIdAndUpdate(id, {id_user, id_book, book, author, student, status})
     res.json({message: 'Reservation Updated'})
 };
 

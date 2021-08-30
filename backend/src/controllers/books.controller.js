@@ -8,10 +8,10 @@ booksCtrl.getBooks = async (req, res) => {
 };
 
 booksCtrl.createBook = async (req, res) => {
-    const {title, author, year, genre, stock} = req.body;
-    const newBook = new Book({title, author, year, genre, stock})
+    const { title, author, year, genre, stock } = req.body;
+    const newBook = new Book({ title, author, year, genre, stock })
     await newBook.save();
-    res.json({message: 'Book Saved'})
+    res.json({ message: 'Book Saved' })
 };
 
 booksCtrl.getBook = async (req, res) => {
@@ -23,20 +23,28 @@ booksCtrl.getBook = async (req, res) => {
 booksCtrl.deleteBook = async (req, res) => {
     const id = req.params.id;
     await Book.findByIdAndDelete(id)
-    res.json({message: 'Book Deleted'})
+    res.json({ message: 'Book Deleted' })
 };
 
 booksCtrl.updateBook = async (req, res) => {
     const id = req.params.id;
-    const {title, author, year, genre, stock} = req.body;
-    await Book.findByIdAndUpdate(id, {title, author, year, genre, stock})
-    res.json({message: 'Book Updated'})
+    const { title, author, year, genre, stock } = req.body;
+    await Book.findByIdAndUpdate(id, { title, author, year, genre, stock })
+    res.json({ message: 'Book Updated' })
 };
 
 booksCtrl.getBooksBySearch = async (req, res) => {
-    const search = req.params.search;
-    const books = await Book.find({title: new RegExp(search, "i")});
-    res.json(books);
+    let regex = new RegExp(req.params.search, 'i');
+    Book.find(
+        { $or: [
+            { title: regex }, 
+            { author: regex },
+            { genre: regex }
+        ] },
+        function (err, books) {
+            res.json(books);
+        }
+    )
 };
 
 module.exports = booksCtrl;

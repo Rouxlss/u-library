@@ -10,7 +10,7 @@ export const UserList = () => {
 
     const history = useHistory();
 
-    if(ROLE!="1"){
+    if(ROLE!=1){
         history.replace(`/`);
     }
 
@@ -36,6 +36,7 @@ export const UserList = () => {
         <>
 
             <div class="container-sm p-5">
+                <h4>Users</h4>
                 <div className="mb-5">
                     <Link to="/create-user" className="btn btn-info">Create User</Link>
                 </div>
