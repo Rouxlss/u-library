@@ -11,7 +11,8 @@ const bookSchema = new Schema ({
         required: true
     },
     year: String,
-    genre: String
+    genre: String,
+    stock: Number
 },{
     timestamps: true
 });

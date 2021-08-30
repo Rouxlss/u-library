@@ -12,5 +12,6 @@ app.use(express.json());
 // routes
 app.use('/api/users', require('./routes/users'))
 app.use('/api/books', require('./routes/books'))
+app.use('/api/reservations', require('./routes/reservation'))
 
 module.exports = app;

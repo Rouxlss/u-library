@@ -8,8 +8,8 @@ booksCtrl.getBooks = async (req, res) => {
 };
 
 booksCtrl.createBook = async (req, res) => {
-    const {title, author, year, genre} = req.body;
-    const newBook = new Book({title, author, year, genre})
+    const {title, author, year, genre, stock} = req.body;
+    const newBook = new Book({title, author, year, genre, stock})
     await newBook.save();
     res.json({message: 'Book Saved'})
 };
@@ -28,9 +28,15 @@ booksCtrl.deleteBook = async (req, res) => {
 
 booksCtrl.updateBook = async (req, res) => {
     const id = req.params.id;
-    const {title, author, year, genre} = req.body;
-    await Book.findByIdAndUpdate(id, {title, author, year, genre})
+    const {title, author, year, genre, stock} = req.body;
+    await Book.findByIdAndUpdate(id, {title, author, year, genre, stock})
     res.json({message: 'Book Updated'})
+};
+
+booksCtrl.getBooksBySearch = async (req, res) => {
+    const search = req.params.search;
+    const books = await Book.find({title: new RegExp(search, "i")});
+    res.json(books);
 };
 
 module.exports = booksCtrl;

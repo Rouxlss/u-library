@@ -7,6 +7,12 @@ usersCtrl.getUsers = async (req, res) => {
     res.json(users);
 };
 
+usersCtrl.getUserByEmail = async (req, res) => {
+    const email = req.params.email;
+    const user = await User.findOne({email: email});
+    res.json(user);
+};
+
 usersCtrl.createUser = async (req, res) => {
     const {first_name,last_name,email,role} = req.body;
     const newUser = new User({first_name,last_name,email,role});
