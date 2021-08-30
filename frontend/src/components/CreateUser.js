@@ -24,7 +24,7 @@ export const CreateUser = () => {
 
         if (id) {
             setediting(true)
-            const user = await axios.get('http://localhost:4000/api/users/' + id);
+            const user = await axios.get('https://my-u-library-mern.herokuapp.com/api/users/' + id);
             await setediting(true)
             setuser(user.data)
         }
@@ -37,7 +37,7 @@ export const CreateUser = () => {
             
             const updateUser = async () => {
                 if (user) {
-                    await axios.put(`http://localhost:4000/api/users/${id}`, user)
+                    await axios.put(`https://my-u-library-mern.herokuapp.com/api/users/${id}`, user)
                     history.push(`/users`);
                 }
             }
@@ -48,7 +48,7 @@ export const CreateUser = () => {
             
             const insertUser = async () => {
                 if (user) {
-                    await axios.post('http://localhost:4000/api/users', user)
+                    await axios.post('https://my-u-library-mern.herokuapp.com/api/users', user)
                     history.push(`/users`);
                 }
             }

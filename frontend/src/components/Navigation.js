@@ -20,7 +20,7 @@ export const Navigation = () => {
     const [user, setuser] = useState({})
 
     async function getData() {
-        const res2 = await axios.get(`http://localhost:4000/api/users/${SESSION_ID}`);
+        const res2 = await axios.get(`https://my-u-library-mern.herokuapp.com/api/users/${SESSION_ID}`);
         setuser(res2.data);
     }
 

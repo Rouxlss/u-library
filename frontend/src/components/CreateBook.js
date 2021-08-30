@@ -12,7 +12,7 @@ export const CreateBook = () => {
 
         if (id) {
             setediting(true)
-            const book = await axios.get('http://localhost:4000/api/books/' + id);
+            const book = await axios.get('https://my-u-library-mern.herokuapp.com/api/books/' + id);
             await setediting(true)
             setbook(book.data)
         }
@@ -25,7 +25,7 @@ export const CreateBook = () => {
             
             const updateBook = async () => {
                 if (book) {
-                    await axios.put(`http://localhost:4000/api/books/${id}`, book)
+                    await axios.put(`https://my-u-library-mern.herokuapp.com/api/books/${id}`, book)
                     history.push(`/`);
                 }
             }
@@ -36,7 +36,7 @@ export const CreateBook = () => {
             
             const insertBook = async () => {
                 if (book) {
-                    await axios.post('http://localhost:4000/api/books', book)
+                    await axios.post('https://my-u-library-mern.herokuapp.com/api/books', book)
                     history.push(`/`);
                 }
             }

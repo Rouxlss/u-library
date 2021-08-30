@@ -17,7 +17,7 @@ export const UserList = () => {
     const [user, setuser] = useState([]);
 
     async function getData() {
-        const res = await axios.get('http://localhost:4000/api/users');
+        const res = await axios.get('https://my-u-library-mern.herokuapp.com/api/users');
         setuser(res.data);
     }
 
@@ -28,7 +28,7 @@ export const UserList = () => {
     }, [])
 
     const deleteUser = async (id) => {
-        await axios.delete(`http://localhost:4000/api/users/${id}`);
+        await axios.delete(`https://my-u-library-mern.herokuapp.com/api/users/${id}`);
         getData();
     }
 

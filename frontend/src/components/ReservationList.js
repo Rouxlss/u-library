@@ -22,10 +22,10 @@ export const ReservationList = () => {
         })
 
         if (ROLE == "1") {
-            const res = await axios.get('http://localhost:4000/api/reservations');
+            const res = await axios.get('https://my-u-library-mern.herokuapp.com/api/reservations');
             setreserv(res.data);
         } else if (ROLE == "2") {
-            const res = await axios.get(`http://localhost:4000/api/reservations/user/${SESSION_ID}`);
+            const res = await axios.get(`https://my-u-library-mern.herokuapp.com/api/reservations/user/${SESSION_ID}`);
             setreserv(res.data);
         }
     }
@@ -39,7 +39,7 @@ export const ReservationList = () => {
     const returnBook = async(resv) => {
 
         const {_id, id_user, id_book, book, author, student, status} = resv;
-        await axios.put(`http://localhost:4000/api/reservations/${_id}`, {
+        await axios.put(`https://my-u-library-mern.herokuapp.com/api/reservations/${_id}`, {
             _id, 
             id_user, 
             id_book, 
@@ -55,12 +55,12 @@ export const ReservationList = () => {
 
         const {_id, id_book} = resv;
 
-        const book = await axios.get(`http://localhost:4000/api/books/${id_book}`);
+        const book = await axios.get(`https://my-u-library-mern.herokuapp.com/api/books/${id_book}`);
         const { title, author, year, genre, stock } =  book.data;
 
-        await axios.delete(`http://localhost:4000/api/reservations/${_id}`);
+        await axios.delete(`https://my-u-library-mern.herokuapp.com/api/reservations/${_id}`);
 
-        await axios.put(`http://localhost:4000/api/books/${id_book}`, { 
+        await axios.put(`https://my-u-library-mern.herokuapp.com/api/books/${id_book}`, { 
             title, 
             author, 
             year, 

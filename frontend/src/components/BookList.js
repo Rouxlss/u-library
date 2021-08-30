@@ -17,14 +17,14 @@ export const BookList = () => {
     const [search, setsearch] = useState('');
 
     async function getData() {
-        const res = await axios.get('http://localhost:4000/api/books');
+        const res = await axios.get('https://my-u-library-mern.herokuapp.com/api/books');
         setbook(res.data);
-        const res2 = await axios.get(`http://localhost:4000/api/users/${SESSION_ID}`);
+        const res2 = await axios.get(`https://my-u-library-mern.herokuapp.com/api/users/${SESSION_ID}`);
         setuser(res2.data);
     }
 
     async function searchData(search) {
-        const books = await axios.get(`http://localhost:4000/api/books/search/${search}`);
+        const books = await axios.get(`https://my-u-library-mern.herokuapp.com/api/books/search/${search}`);
         setbook(books.data);
     }
 
@@ -43,7 +43,7 @@ export const BookList = () => {
     }, [search])
 
     const deleteBook = async (id) => {
-        await axios.delete(`http://localhost:4000/api/books/${id}`);
+        await axios.delete(`https://my-u-library-mern.herokuapp.com/api/books/${id}`);
         getData();
     }
 
@@ -51,7 +51,7 @@ export const BookList = () => {
 
         const { title, author, year, genre, stock } = book;
 
-        await axios.post('http://localhost:4000/api/reservations/', {
+        await axios.post('https://my-u-library-mern.herokuapp.com/api/reservations/', {
             id_user: SESSION_ID,
             id_book: book._id,
             book: book.title,
@@ -60,7 +60,7 @@ export const BookList = () => {
             status: 1
         });
 
-        await axios.put(`http://localhost:4000/api/books/${book._id}`, {
+        await axios.put(`https://my-u-library-mern.herokuapp.com/api/books/${book._id}`, {
             title,
             author,
             year,

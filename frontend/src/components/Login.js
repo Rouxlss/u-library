@@ -16,7 +16,7 @@ export const Login = () => {
 
     async function validate_email() {
         if (email != "") {
-            const { data } = await axios.get(`http://localhost:4000/api/users/auth/` + email);
+            const { data } = await axios.get(`https://my-u-library-mern.herokuapp.com/api/users/auth/` + email);
             if (data) {
                 cookies.set('id', data._id, { path: "/" });
                 cookies.set('role', data.role, { path: "/" });
